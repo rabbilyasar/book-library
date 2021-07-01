@@ -12,8 +12,6 @@ def index(request):
 
     # Available books (status = 'a')
     num_instances_available = BookInstance.objects.filter(status__exact='a').count()
-
-    # The 'all()' is implied by default.
     num_authors = Author.objects.count()
 
     # Number of visits to this view, as counted in the session variable.
@@ -40,3 +38,16 @@ class BookListView(generic.ListView):
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+
+class AuthorListView(generic.ListView):
+    """class based views for listing authors
+    """
+    model = Author
+    paginate_by = 10
+
+
+class AuthorDetailView(generic.DetailView):
+    """class based detail view for an author
+    """
+    model = Author
