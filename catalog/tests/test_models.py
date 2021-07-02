@@ -29,6 +29,7 @@ class TestModels(TestCase):
 
     def test_book_absolute_url_with_200(self):
         book = Book.objects.first()
+        self.assertEqual(book.get_absolute_url(), '/catalog/book/1')
         response = self.client.get(book.get_absolute_url())
         self.assertEqual(response.status_code, 200)
 

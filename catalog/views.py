@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
+from django.contrib.auth.decorators import login_required
 
 
+@login_required(login_url='/login/')
 def index(request):
     """View function for home page of site."""
 
@@ -51,3 +55,8 @@ class AuthorDetailView(generic.DetailView):
     """class based detail view for an author
     """
     model = Author
+
+
+class ExampleTestView(LoginRequiredMixin, View):
+    login_url = '/login/'
+    redirect_field_name = '/catalog/'
