@@ -28,7 +28,7 @@ class IndexViewTest(TestCase):
         """
         response = self.client.get('/catalog/')
         self.assertRedirects(response, '/login/?next=/catalog/')
-        response = self.client.get('/catalog/')
+        response = self.client.post('/catalog/')
         self.assertRedirects(response, '/login/?next=/catalog/')
 
     def test_view_url_accesible_by_name(self):
@@ -49,6 +49,8 @@ class IndexViewTest(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_view_has_context_num_books(self):
+        """Test view giviving correct number of num_books
+        """
         self.client.login(username='test_user', password='test_password')
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)

@@ -56,7 +56,3 @@ class AuthorDetailView(generic.DetailView):
     """
     model = Author
 
-
-class ExampleTestView(LoginRequiredMixin, View):
-    login_url = '/login/'
-    redirect_field_name = '/catalog/'
